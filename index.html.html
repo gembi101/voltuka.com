@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="VOLTUKA — outsourced PV engineering for solar installers and electrical contractors in Germany, Austria, Switzerland, Belgium, the Netherlands and Luxembourg. 48-hour, grid-compliant designs." />
+<title>VOLTUKA — Outsourced PV Engineering · 48-Hour Grid-Compliant Designs</title>
+
+<style>
+/* =========================================================
+   VOLTUKA BRAND SYSTEM
+   ---------------------------------------------------------
+   Colors extracted directly from the VOLTUKA logo (LLOGO.png):
+     - Deep navy / charcoal (primary brand)        : #1E2A47
+     - Electric amber / orange (accent — the bolt) : #F39C2A
+     - White (logo background, clean canvas)       : #FFFFFF
+   All other tokens are derived tints, shades, or neutrals
+   built on top of these three. No off-brand colors are used.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  /* Core brand */
+  --brand-dark: #1E2A47;          /* primary navy from V mark + wordmark */
+  --brand-dark-2: #16203A;        /* deeper shade for full-bleed sections */
+  --brand-dark-3: #0F1729;        /* near-black accent for footer */
+  --brand-accent: #F39C2A;        /* electric amber — the lightning bolt */
+  --brand-accent-2: #E08A18;      /* hover / pressed amber */
+  --brand-accent-soft: #FDF1DC;   /* tint for highlighted rows */
+
+  /* Neutrals derived from brand */
+  --white: #FFFFFF;
+  --bg: #FFFFFF;
+  --bg-soft: #F6F7FA;             /* section alt background */
+  --bg-muted: #EEF1F6;            /* trust bar / quiet panels */
+  --border: #E2E6EE;              /* hairlines */
+  --border-strong: #C9D0DD;
+  --text: #1E2A47;                /* body text = brand dark */
+  --text-muted: #5A657B;
+  --text-soft: #8892A6;
+
+  /* Typography */
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
+
+  /* Layout */
+  --maxw: 1200px;
+  --radius: 8px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 2px rgba(30,42,71,.06), 0 2px 6px rgba(30,42,71,.04);
+  --shadow-md: 0 4px 12px rgba(30,42,71,.08), 0 12px 28px rgba(30,42,71,.06);
+  --shadow-accent: 0 6px 18px rgba(243,156,42,.28);
+}
+
+/* ------------------ RESET ------------------ */
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.6;
+  color:var(--text);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+
+h1,h2,h3,h4{
+  font-family:var(--font-display);
+  font-weight:700;
+  letter-spacing:-0.02em;
+  line-height:1.15;
+  margin:0 0 .5em;
+  color:var(--brand-dark);
+}
+h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;}
+h2{font-size:clamp(1.7rem,3.4vw,2.4rem);}
+h3{font-size:1.25rem;}
+p{margin:0 0 1rem;}
+
+.container{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:0 24px;
+}
+
+section{padding:96px 0;}
+@media (max-width:768px){section{padding:64px 0;}}
+
+.eyebrow{
+  display:inline-block;
+  font-family:var(--font-display);
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--brand-accent);
+  margin-bottom:1rem;
+}
+
+/* ------------------ BUTTONS (single canonical style) ------------------ */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.5em;
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:.98rem;
+  letter-spacing:.01em;
+  padding:14px 26px;
+  border-radius:var(--radius);
+  background:var(--brand-accent);
+  color:var(--white);
+  border:2px solid var(--brand-accent);
+  transition:transform .15s ease, background .2s ease, box-shadow .2s ease, border-color .2s ease;
+  white-space:nowrap;
+  cursor:pointer;
+}
+.btn:hover{background:var(--brand-accent-2);border-color:var(--brand-accent-2);box-shadow:var(--shadow-accent);transform:translateY(-1px);}
+.btn:active{transform:translateY(0);}
+
+.btn-ghost{
+  background:transparent;
+  color:var(--white);
+  border:2px solid rgba(255,255,255,.45);
+  box-shadow:none;
+}
+.btn-ghost:hover{background:rgba(255,255,255,.08);border-color:var(--white);box-shadow:none;}
+
+.btn-ghost-dark{
+  background:transparent;
+  color:var(--brand-dark);
+  border:2px solid var(--border-strong);
+}
+.btn-ghost-dark:hover{background:var(--bg-soft);border-color:var(--brand-dark);box-shadow:none;}
+
+/* =========================================================
+   SECTION: NAVBAR
+   ========================================================= */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:90;
+  padding:14px 0;
+  transition:background .25s ease, box-shadow .25s ease, padding .25s ease;
+  background:transparent;
+}
+.navbar.scrolled{
+  background:var(--brand-dark);
+  box-shadow:0 2px 10px rgba(0,0,0,.18);
+  padding:8px 0;
+}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:var(--maxw);margin:0 auto;padding:0 24px;
+}
+.nav-logo{
+  display:flex;align-items:center;gap:10px;
+  background:var(--white);
+  padding:6px 14px 6px 8px;
+  border-radius:8px;
+  transition:transform .2s ease;
+}
+.nav-logo:hover{transform:translateY(-1px);}
+.nav-logo img{height:36px;width:auto;}
+.nav-cta-wrap{display:flex;align-items:center;gap:14px;}
+.nav-cta{
+  padding:10px 20px;
+  font-size:.92rem;
+}
+.nav-links {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.82);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+.nav-links a:hover { color: var(--brand-accent); }
+@media (max-width: 768px) { .nav-links { display: none; } }
+.mobile-nav-links {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.mobile-nav-links a {
+  color: rgba(255,255,255,0.82);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: block;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.mobile-nav-links a:hover { color: var(--brand-accent); }
+.nav-burger{
+  display:none;
+  width:42px;height:42px;
+  border-radius:6px;
+  background:rgba(255,255,255,.08);
+  position:relative;
+}
+.nav-burger span{
+  position:absolute;left:11px;right:11px;height:2px;background:var(--white);border-radius:2px;
+  transition:transform .2s ease, opacity .2s ease, top .2s ease;
+}
+.nav-burger span:nth-child(1){top:14px;}
+.nav-burger span:nth-child(2){top:20px;}
+.nav-burger span:nth-child(3){top:26px;}
+.nav-burger.open span:nth-child(1){top:20px;transform:rotate(45deg);}
+.nav-burger.open span:nth-child(2){opacity:0;}
+.nav-burger.open span:nth-child(3){top:20px;transform:rotate(-45deg);}
+
+@media (max-width:640px){
+  .nav-cta{display:none;}
+  .nav-burger{display:block;}
+  .navbar.scrolled{padding:6px 0;}
+}
+
+.mobile-menu{
+  position:fixed;top:0;right:-100%;width:80%;max-width:340px;height:100vh;
+  background:var(--brand-dark);z-index:95;
+  padding:90px 28px 28px;
+  transition:right .3s ease;
+  box-shadow:-12px 0 30px rgba(0,0,0,.25);
+}
+.mobile-menu.open{right:0;}
+.mobile-menu .btn{width:100%;font-size:1rem;padding:16px;}
+.mobile-overlay{
+  position:fixed;inset:0;background:rgba(15,23,41,.6);
+  opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:94;
+}
+.mobile-overlay.show{opacity:1;pointer-events:auto;}
+
+/* =========================================================
+   SECTION: HERO
+   ========================================================= */
+.hero{
+  padding:160px 0 110px;
+  position:relative;
+  overflow:hidden;
+  background:var(--brand-dark);
+  color:var(--white);
+  isolation:isolate;
+}
+.hero::before{
+  content:"";
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(243,156,42,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(243,156,42,.06) 1px, transparent 1px);
+  background-size:48px 48px;
+  background-position:center;
+  mask-image:radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  z-index:-1;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  width:600px;height:600px;
+  background:radial-gradient(circle, rgba(243,156,42,.18) 0%, transparent 65%);
+  top:-200px;right:-150px;
+  z-index:-1;
+}
+.hero h1{color:var(--white);max-width:880px;}
+.hero h1 .accent{color:var(--brand-accent);}
+.hero p.lead{
+  font-size:clamp(1.05rem, 1.4vw, 1.2rem);
+  color:rgba(255,255,255,.78);
+  max-width:660px;
+  margin:0 0 2.2rem;
+  line-height:1.55;
+}
+.hero-cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+@media (max-width:480px){
+  .hero{padding:140px 0 80px;}
+  .hero-cta-row .btn{flex:1;min-width:140px;}
+}
+
+/* =========================================================
+   SECTION: TRUST BAR
+   ========================================================= */
+.trust{
+  background:var(--bg-muted);
+  padding:32px 0;
+  border-bottom:1px solid var(--border);
+}
+.trust-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;
+}
+.trust-item{
+  display:flex;align-items:center;gap:12px;
+  font-size:.92rem;
+  font-weight:600;
+  color:var(--brand-dark);
+  font-family:var(--font-display);
+}
+.trust-icon{
+  flex-shrink:0;
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--white);border:1px solid var(--border);
+  color:var(--brand-accent);
+}
+.trust-icon svg{width:18px;height:18px;}
+@media (max-width:900px){
+  .trust-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:480px){
+  .trust-grid{grid-template-columns:1fr;gap:14px;}
+  .trust{padding:24px 0;}
+}
+
+/* =========================================================
+   SECTION: PROBLEM
+   ========================================================= */
+.problem{background:var(--bg);}
+.section-head{
+  text-align:center;
+  max-width:780px;
+  margin:0 auto 56px;
+}
+.section-head p{color:var(--text-muted);font-size:1.05rem;}
+
+.pain-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.pain-card{
+  background:var(--bg-soft);
+  border-left:4px solid var(--brand-accent);
+  padding:28px 26px;
+  border-radius:0 var(--radius) var(--radius) 0;
+}
+.pain-card h3{font-size:1.1rem;margin-bottom:.4em;}
+.pain-card p{color:var(--text-muted);font-size:.96rem;margin:0;line-height:1.55;}
+@media (max-width:768px){.pain-grid{grid-template-columns:1fr;}}
+
+/* =========================================================
+   SECTION: HOW IT WORKS
+   ========================================================= */
+.how{background:var(--bg-soft);}
+.steps{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:28px;
+  position:relative;
+}
+.steps::before{
+  content:"";
+  position:absolute;
+  top:32px;left:14%;right:14%;
+  height:2px;
+  background:repeating-linear-gradient(90deg, var(--border-strong) 0 6px, transparent 6px 14px);
+  z-index:0;
+}
+.step{
+  position:relative;z-index:1;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:32px 26px;
+  text-align:center;
+  box-shadow:var(--shadow-sm);
+}
+.step-num{
+  width:64px;height:64px;
+  background:var(--brand-dark);
+  color:var(--brand-accent);
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:1.5rem;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;
+  border:4px solid var(--bg-soft);
+  box-shadow:0 0 0 1px var(--border);
+}
+.step h3{font-size:1.15rem;margin-bottom:.5em;}
+.step p{color:var(--text-muted);font-size:.95rem;margin:0;}
+@media (max-width:768px){
+  .steps{grid-template-columns:1fr;gap:20px;}
+  .steps::before{display:none;}
+}
+
+/* =========================================================
+   SECTION: TESTIMONIAL (SOCIAL PROOF)
+   ========================================================= */
+.testimonial{background:var(--bg-muted);}
+.testimonial-card{
+  max-width:760px;
+  margin:0 auto;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-left:5px solid var(--brand-accent);
+  border-radius:var(--radius-lg);
+  padding:36px 40px;
+  box-shadow:var(--shadow-sm);
+}
+.testimonial-quote{
+  font-style:italic;
+  font-size:1.1rem;
+  line-height:1.65;
+  color:var(--text);
+  margin:0 0 1.2rem;
+  font-family:var(--font-body);
+}
+.testimonial-attr{
+  font-family:var(--font-display);
+  font-weight:700;
+  color:var(--brand-dark);
+  font-size:.98rem;
+  line-height:1.4;
+}
+.testimonial-attr span{
+  display:block;
+  font-weight:500;
+  color:var(--text-muted);
+  font-size:.9rem;
+  margin-top:2px;
+}
+@media (max-width:480px){
+  .testimonial-card{padding:28px 24px;}
+}
+
+/* =========================================================
+   SECTION: DELIVERABLES (WHAT YOU GET)
+   ========================================================= */
+.deliverables{background:var(--bg);}
+.deliv-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:14px 32px;
+  max-width:880px;margin:0 auto;
+}
+.deliv-item{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:18px 20px;
+  background:var(--bg-soft);
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  font-size:1rem;
+  font-weight:500;
+  color:var(--brand-dark);
+  font-family:var(--font-body);
+}
+.deliv-check{
+  flex-shrink:0;
+  width:24px;height:24px;border-radius:50%;
+  background:var(--brand-accent);
+  color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:.85rem;
+  margin-top:2px;
+}
+.deliv-footnote{
+  text-align:center;
+  margin-top:36px;
+  font-style:italic;
+  color:var(--text-muted);
+  font-size:.95rem;
+}
+@media (max-width:640px){.deliv-grid{grid-template-columns:1fr;}}
+
+/* =========================================================
+   SECTION: PRICING
+   ========================================================= */
+.pricing{background:var(--bg-soft);}
+.price-table-wrap{
+  background:var(--white);
+  border-radius:var(--radius-lg);
+  border:1px solid var(--border);
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+}
+.price-table{
+  width:100%;
+  border-collapse:collapse;
+  font-family:var(--font-body);
+}
+.price-table thead{
+  background:var(--brand-dark);
+  color:var(--white);
+}
+.price-table th{
+  text-align:left;
+  font-family:var(--font-display);
+  font-size:.78rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-weight:700;
+  padding:18px 22px;
+}
+.price-table td{
+  padding:22px;
+  border-top:1px solid var(--border);
+  vertical-align:middle;
+  font-size:.97rem;
+  color:var(--text);
+}
+.price-table tr.most-common{
+  background:var(--brand-accent-soft);
+}
+.tier-name{
+  font-family:var(--font-display);
+  font-weight:700;
+  color:var(--brand-dark);
+  font-size:1rem;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.most-badge{
+  display:inline-block;
+  background:var(--brand-accent);
+  color:var(--white);
+  font-size:.68rem;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:3px 10px;
+  border-radius:50px;
+}
+.price-cell{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:1.2rem;
+  color:var(--brand-accent);
+  white-space:nowrap;
+}
+.price-anchor{
+  display:block;
+  font-size:.85rem;
+  color:var(--text-muted);
+  font-style:italic;
+  margin-top:24px;
+  text-align:center;
+}
+.price-fineprint{
+  text-align:center;
+  font-size:.85rem;
+  color:var(--text-muted);
+  margin-top:14px;
+}
+
+.retainers{
+  margin-top:64px;
+}
+.retainers h3{
+  text-align:center;
+  font-size:1.4rem;
+  margin-bottom:8px;
+}
+.retainers .sub{
+  text-align:center;color:var(--text-muted);
+  max-width:620px;margin:0 auto 36px;
+}
+.retainer-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:24px;
+  max-width:860px;margin:0 auto;
+}
+.retainer-card{
+  background:var(--brand-dark);
+  color:var(--white);
+  padding:32px 28px;
+  border-radius:var(--radius-lg);
+  border:1px solid var(--brand-dark);
+  position:relative;
+  overflow:hidden;
+}
+.retainer-card.premium{
+  background:linear-gradient(180deg, var(--brand-dark) 0%, var(--brand-dark-2) 100%);
+  border:1px solid rgba(243,156,42,.4);
+}
+.retainer-card .price{
+  font-family:var(--font-display);
+  font-size:2rem;font-weight:800;
+  color:var(--brand-accent);
+  margin-bottom:4px;
+}
+.retainer-card .vol{
+  font-family:var(--font-display);
+  font-weight:600;font-size:1rem;color:var(--white);
+  margin-bottom:14px;
+}
+.retainer-card .perks{
+  font-size:.93rem;color:rgba(255,255,255,.78);margin:0;
+}
+.retainer-fineprint{
+  text-align:center;
+  font-size:.85rem;
+  color:var(--text-muted);
+  font-style:italic;
+  margin-top:24px;
+}
+@media (max-width:768px){
+  .retainer-grid{grid-template-columns:1fr;}
+  .price-table thead{display:none;}
+  .price-table tr{display:block;border-top:1px solid var(--border);padding:18px 0;}
+  .price-table tr.most-common{padding-left:14px;padding-right:14px;border-radius:var(--radius);}
+  .price-table td{display:block;border-top:none;padding:6px 22px;}
+  .price-table td::before{
+    content:attr(data-label);
+    display:block;
+    font-family:var(--font-display);
+    font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--text-soft);font-weight:700;
+    margin-bottom:2px;
+  }
+}
+
+/* =========================================================
+   SECTION: GUARANTEE
+   ========================================================= */
+.guarantee{
+  background:var(--brand-dark);
+  color:var(--white);
+  text-align:center;
+  position:relative;
+  border-top:4px solid var(--brand-accent);
+}
+.guarantee .eyebrow{color:var(--brand-accent);}
+.guarantee h2{color:var(--white);max-width:820px;margin:0 auto .8em;}
+.guarantee h2 .accent{color:var(--brand-accent);}
+.guarantee p.body{
+  color:rgba(255,255,255,.82);
+  max-width:680px;margin:0 auto 1.6rem;
+  font-size:1.05rem;line-height:1.65;
+}
+.guarantee p.italic{
+  font-style:italic;
+  color:var(--brand-accent);
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:1.05rem;
+  max-width:720px;margin:0 auto;
+}
+
+/* =========================================================
+   SECTION: OBJECTIONS
+   ========================================================= */
+.objections{background:var(--bg);}
+.obj-list{
+  display:flex;flex-direction:column;gap:20px;
+  max-width:920px;margin:0 auto;
+}
+.obj-card{
+  display:grid;
+  grid-template-columns:80px 1fr;
+  background:var(--bg-soft);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:28px 30px;
+  gap:24px;
+}
+.obj-num{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:2.2rem;
+  color:var(--brand-accent);
+  line-height:1;
+}
+.obj-body h3{font-size:1.1rem;margin-bottom:.4em;}
+.obj-q{
+  font-style:italic;
+  color:var(--brand-accent);
+  font-size:.95rem;
+  margin-bottom:.6em;
+  font-family:var(--font-body);
+}
+.obj-a{
+  color:var(--text);
+  font-size:.98rem;
+  margin:0;
+  line-height:1.6;
+}
+@media (max-width:640px){
+  .obj-card{grid-template-columns:1fr;gap:8px;padding:24px;}
+  .obj-num{font-size:1.6rem;}
+}
+
+/* =========================================================
+   SECTION: FOUNDER
+   ========================================================= */
+.founder{background:var(--bg-soft);}
+.founder-inner{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  gap:48px;
+  align-items:center;
+  max-width:980px;margin:0 auto;
+}
+.founder-photo{
+  width:240px;height:240px;
+  border-radius:50%;
+  object-fit:cover;
+  border:6px solid var(--white);
+  box-shadow:var(--shadow-md);
+  margin:0 auto;
+  background:var(--bg-muted);
+}
+.founder-content h2{margin-bottom:.5em;}
+.founder-content p{color:var(--text);line-height:1.7;font-size:1.02rem;}
+.founder-sig{
+  font-family:var(--font-display);
+  font-weight:700;
+  color:var(--brand-dark);
+  margin-top:1rem;
+}
+.founder-sig span{color:var(--brand-accent);font-weight:600;display:block;font-size:.9rem;margin-top:2px;}
+@media (max-width:768px){
+  .founder-inner{grid-template-columns:1fr;text-align:center;gap:28px;}
+  .founder-photo{width:200px;height:200px;}
+}
+
+/* =========================================================
+   SECTION: CAPACITY / URGENCY
+   ========================================================= */
+.capacity{background:var(--bg);padding:64px 0;}
+.capacity-box{
+  max-width:820px;margin:0 auto;
+  background:var(--white);
+  border:2px solid var(--brand-accent);
+  border-radius:var(--radius-lg);
+  padding:36px 40px;
+  position:relative;
+  box-shadow:var(--shadow-sm);
+}
+.capacity-box::before{
+  content:"";
+  position:absolute;
+  top:-1px;left:-1px;width:6px;bottom:-1px;
+  background:var(--brand-accent);
+  border-radius:var(--radius-lg) 0 0 var(--radius-lg);
+}
+.capacity-eyebrow{
+  font-family:var(--font-display);
+  font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--brand-accent);font-weight:700;margin-bottom:10px;
+}
+.capacity-box h3{font-size:1.4rem;margin-bottom:.6em;}
+.capacity-box p{color:var(--text);font-size:1rem;margin-bottom:14px;line-height:1.6;}
+.capacity-quarter{
+  font-family:var(--font-display);
+  font-weight:700;
+  color:var(--brand-dark);
+  background:var(--brand-accent-soft);
+  display:inline-block;
+  padding:8px 16px;border-radius:50px;
+  font-size:.95rem;
+}
+@media (max-width:480px){
+  .capacity-box{padding:28px 24px 28px 28px;}
+}
+
+/* =========================================================
+   SECTION: QUOTE FORM
+   ========================================================= */
+.quote{background:var(--bg-soft);}
+.quote-inner{max-width:720px;margin:0 auto;}
+.quote-head{text-align:center;margin-bottom:40px;}
+.quote-head h2{margin-bottom:.4em;}
+.quote-head p{color:var(--text-muted);font-size:1.05rem;}
+
+.form-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:36px;
+  box-shadow:var(--shadow-md);
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+.form-row .form-group{margin-bottom:0;}
+.form-group label{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:.85rem;
+  color:var(--brand-dark);
+  letter-spacing:.01em;
+}
+.form-group label .req{color:var(--brand-accent);}
+.form-group input,
+.form-group select,
+.form-group textarea{
+  font-family:var(--font-body);
+  font-size:.98rem;
+  color:var(--text);
+  padding:13px 14px;
+  border:1.5px solid var(--border-strong);
+  border-radius:var(--radius);
+  background:var(--white);
+  transition:border-color .2s ease, box-shadow .2s ease;
+  width:100%;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+  outline:none;
+  border-color:var(--brand-accent);
+  box-shadow:0 0 0 3px rgba(243,156,42,.18);
+}
+.form-group textarea{resize:vertical;min-height:120px;}
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error{border-color:#D64545;}
+.form-group .err-msg{font-size:.82rem;color:#D64545;display:none;}
+.form-group .err-msg.show{display:block;}
+
+.form-submit{width:100%;margin-top:8px;font-size:1.02rem;padding:16px;}
+.form-fallback{
+  text-align:center;
+  margin-top:20px;
+  color:var(--text-muted);
+  font-size:.88rem;
+}
+.form-fallback a{
+  color:var(--brand-dark);
+  border-bottom:1px solid var(--border-strong);
+  font-weight:500;
+}
+.form-fallback a:hover{color:var(--brand-accent);border-color:var(--brand-accent);}
+
+.form-success{
+  display:none;
+  text-align:center;
+  padding:48px 32px;
+}
+.form-success.show{display:block;}
+.form-success .check-big{
+  width:72px;height:72px;border-radius:50%;
+  background:var(--brand-accent-soft);
+  color:var(--brand-accent);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;
+  font-size:2rem;font-weight:700;
+}
+.form-success h3{font-size:1.3rem;}
+.form-success p{color:var(--text-muted);margin:0;}
+
+@media (max-width:600px){
+  .form-row{grid-template-columns:1fr;gap:0;}
+  .form-row .form-group{margin-bottom:18px;}
+  .form-card{padding:28px 22px;}
+}
+
+/* =========================================================
+   SECTION: FOOTER
+   ========================================================= */
+.footer{
+  background:var(--brand-dark-3);
+  color:rgba(255,255,255,.7);
+  padding:56px 0 32px;
+}
+.footer-inner{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:32px;
+  align-items:flex-start;
+}
+.footer-logo{
+  background:var(--white);
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:8px;
+  margin-bottom:18px;
+}
+.footer-logo img{height:36px;width:auto;display:block;}
+.footer-tagline{
+  color:rgba(255,255,255,.55);
+  font-size:.92rem;
+  max-width:380px;
+  line-height:1.6;
+  margin:0;
+}
+.footer-contact{text-align:right;font-size:.95rem;}
+.footer-contact a{
+  color:var(--white);
+  display:block;
+  margin-bottom:6px;
+  font-weight:500;
+}
+.footer-contact a:hover{color:var(--brand-accent);}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.08);
+  margin-top:36px;padding-top:20px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:.82rem;
+  color:rgba(255,255,255,.45);
+}
+.footer-bottom .legal{font-family:var(--font-display);}
+@media (max-width:640px){
+  .footer-inner{grid-template-columns:1fr;}
+  .footer-contact{text-align:left;}
+  .footer-bottom{flex-direction:column;gap:8px;text-align:center;}
+}
+
+/* =========================================================
+   MOBILE STICKY CTA BAR
+   ========================================================= */
+.mobile-sticky-cta{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;z-index:80;
+  padding:12px 16px;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(12px);
+  border-top:1px solid var(--border);
+  box-shadow:0 -4px 14px rgba(30,42,71,.08);
+  transform:translateY(0);
+  transition:transform .3s ease;
+}
+.mobile-sticky-cta.hidden{transform:translateY(120%);}
+.mobile-sticky-cta .btn{width:100%;}
+@media (max-width:768px){
+  .mobile-sticky-cta{display:block;}
+  body{padding-bottom:74px;}
+}
+
+/* =========================================================
+   FADE-IN ON SCROLL
+   ========================================================= */
+.reveal{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .6s ease, transform .6s ease;
+}
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    transition:none !important;
+    animation:none !important;
+  }
+  .reveal{opacity:1;transform:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     SECTION: NAVBAR
+     ========================================================= -->
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo" aria-label="VOLTUKA — home">
+      <img src="LLOGO.png" alt="VOLTUKA logo" />
+    </a>
+    <nav class="nav-links" aria-label="Page sections">
+      <a href="#how">How It Works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#quote-section">Get a Quote</a>
+    </nav>
+    <div class="nav-cta-wrap">
+      <a href="#quote-section" class="btn nav-cta">Get a Free Quote</a>
+      <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<aside class="mobile-menu" id="mobileMenu">
+  <a href="#quote-section" class="btn">Get a Free Quote</a>
+  <nav class="mobile-nav-links" aria-label="Page sections">
+    <a href="#how">How It Works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</aside>
+
+<!-- =========================================================
+     SECTION: HERO
+     ========================================================= -->
+<section class="hero" id="top">
+  <div class="container">
+    <span class="eyebrow">Outsourced PV Engineering · DACH &amp; BENELUX</span>
+    <h1>Your PV Designs.<br><span class="accent">48 Hours.</span> Grid-Compliant.</h1>
+    <p class="lead">Built for solar installers and electrical contractors doing 5+ projects per month — when your pipeline is full but your design queue is already backed up. We deliver grid-compliant PV designs in 48 hours, so your team closes faster and submits with confidence.</p>
+    <div class="hero-cta-row">
+      <a href="#quote-section" class="btn">Get a Free Quote</a>
+      <a href="#how" class="btn btn-ghost">See How It Works</a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SECTION: TRUST BAR
+     ========================================================= -->
+<section class="trust" style="padding:32px 0;">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <span class="trust-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </span>
+        <span>DIN VDE / EN Compliant Designs</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </span>
+        <span>48-Hour Turnaround — Guaranteed</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </span>
+        <span>Designs Delivered Across DE &amp; NL</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <span>First Project: Free If It Fails Netzbetreiber Review</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SECTION: PROBLEM
+     ========================================================= -->
+<section class="problem reveal">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The Problem</span>
+      <h2>Your pipeline is full. Your design capacity isn't.</h2>
+      <p>Most installers across DACH &amp; BENELUX hit the same wall: more projects coming in than their engineering team can turn around. Three options — none of them good.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <h3>Hire a full-time engineer</h3>
+        <p>Expensive, slow to recruit, and over-capacity for the work you actually have.</p>
+      </div>
+      <div class="pain-card">
+        <h3>Use a freelancer</h3>
+        <p>Missed deadlines and engineers who don't know DACH grid standards or Netzbetreiber requirements.</p>
+      </div>
+      <div class="pain-card">
+        <h3>Push designs back</h3>
+        <p>Every week of delay is another project lost to a competitor who could move faster.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SECTION: HOW IT WORKS
+     ========================================================= -->
+<section class="how reveal" id="how">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The Process</span>
+      <h2>How VOLTUKA Works</h2>
+      <p>Three steps from specs to submission-ready files. No back-and-forth, no surprises.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>You send specs</h3>
+        <p>Roof plan, system size, location, and grid operator. That's everything we need to start.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>We design</h3>
+        <p>48-hour turnaround. We run yield simulation in PVSol and Helioscope, produce layout drawings in AutoCAD, validate string sizing and shading analysis, and review everything against your Netzbetreiber's TAB requirements. DIN VDE / EN compliant. Full deliverable, ready to submit.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>You submit and win</h3>
+        <p>Files are formatted for direct Netzbetreiber submission. No re-work by your team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REPLACE WITH REAL TESTIMONIAL BEFORE PUBLISHING -->
+<!-- =========================================================
+     SECTION: TESTIMONIAL (SOCIAL PROOF)
+     ========================================================= -->
+<section class="testimonial reveal" style="display:none;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Social Proof</span>
+      <h2>What Our Partners Say</h2>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-quote">"First design passed Netzbetreiber review on the first submission. Turnaround was exactly 48 hours. We've since moved to a monthly retainer."</p>
+      <div class="testimonial-attr">
+        [Client Name], [Job Title]
+        <span>[Company Name], Germany</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SECTION: DELIVERABLES
+     ========================================================= -->
+<section class="deliverables reveal">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Every Project Includes</span>
+      <h2>One Price. Full Deliverable. Every Time.</h2>
+      <p>No upsells. No "additional scope" surprises. Every project ships with the complete package below.</p>
+    </div>
+    <div class="deliv-grid">
+      <div class="deliv-item"><span class="deliv-check" aria-hidden="true">&#10003;</span>System sizing &amp; panel count</div>
+      <div class="deliv-item"><span class="deliv-check" aria-hidden="true">&#10003;</span>Annual yield simulation (kWh)</div>
+      <div class="deliv-item"><span class="deliv-check" aria-hidden="true">&#10003;</span>Panel type &amp; inverter specification</div>
+      <div class="deliv-item"><span class="deliv-check" aria-hidden="true">&#10003;</span>ROI &amp; payback period analysis</div>
+      <div class="deliv-item"><span class="deliv-check" aria-hidden="true">&#10003;</span>Roof / area layout plan</div>
+      <div class="deliv-item"><span class="deliv-check" aria-hidden="true">&#10003;</span>Bill of Quantities (BOQ)</div>
+      <div class="deliv-item"><span class="deliv-check" aria-hidden="true">&#10003;</span>String configuration &amp; wiring logic</div>
+      <div class="deliv-item"><span class="deliv-check" aria-hidden="true">&#10003;</span>DIN VDE / EN compliance checklist</div>
+    </div>
+    <p class="deliv-footnote">Every deliverable is formatted for direct submission to your grid operator. No re-work required.</p>
+  </div>
+</section>
+
+<!-- =========================================================
+     SECTION: PRICING
+     ========================================================= -->
+<section class="pricing reveal" id="pricing">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Pricing Structure · 2026</span>
+      <h2>Know Your Cost Before You Send the Specs.</h2>
+      <p>One service. Full deliverable every time. Price determined by system size.</p>
+    </div>
+
+    <div class="price-table-wrap">
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>System Size</th>
+            <th>Price</th>
+            <th>Scope</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Tier"><span class="tier-name">Residential</span></td>
+            <td data-label="System Size">Up to 30 kWp</td>
+            <td data-label="Price"><span class="price-cell">€ 220</span></td>
+            <td data-label="Scope">Rooftop residential. Freelance market rate: €400–800 for same scope.</td>
+          </tr>
+          <tr class="most-common">
+            <td data-label="Tier"><span class="tier-name">Small Commercial <span class="most-badge">Most Common</span></span></td>
+            <td data-label="System Size">30 – 100 kWp</td>
+            <td data-label="Price"><span class="price-cell">€ 450</span></td>
+            <td data-label="Scope">Commercial rooftop. Single or three-phase. Freelance market rate: €800–1,400.</td>
+          </tr>
+          <tr>
+            <td data-label="Tier"><span class="tier-name">Medium C&amp;I</span></td>
+            <td data-label="System Size">100 – 300 kWp</td>
+            <td data-label="Price"><span class="price-cell">€ 900</span></td>
+            <td data-label="Scope">Industrial rooftop or small ground-mount. Freelance market rate: €1,500–2,500.</td>
+          </tr>
+          <tr>
+            <td data-label="Tier"><span class="tier-name">Large / Utility</span></td>
+            <td data-label="System Size">300 kWp+</td>
+            <td data-label="Price"><span class="price-cell">On Request</span></td>
+            <td data-label="Scope">Large ground-mount. Scoped per complexity.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="price-fineprint">All prices exclude VAT. Invoiced in EUR. Payment due within 14 days of delivery.</p>
+
+    <div class="retainers">
+      <span class="eyebrow" style="display:block;text-align:center;">For High-Volume Partners</span>
+      <h3>Monthly Retainer — Lock In. Scale Up.</h3>
+      <p class="sub">Commit to volume and get: lower per-project rate, named contact, dedicated capacity, guaranteed SLA.</p>
+      <div class="retainer-grid">
+        <div class="retainer-card">
+          <div class="price">€ 1,800 / month</div>
+          <div class="vol">Up to 10 projects</div>
+          <p class="perks">€180/project · Named contact · No queue</p>
+        </div>
+        <div class="retainer-card premium">
+          <div class="price">€ 3,500 / month</div>
+          <div class="vol">Up to 25 projects</div>
+          <p class="perks">€140/project · 24h urgent SLA · Priority slot</p>
+        </div>
+      </div>
+      <p class="retainer-fineprint">Retainer slots are limited. Available only after at least one completed per-project engagement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SECTION: GUARANTEE
+     ========================================================= -->
+<section class="guarantee reveal">
+  <div class="container">
+    <span class="eyebrow">The Guarantee</span>
+    <h2>If it fails grid review — <span class="accent">we redesign it. Free.</span></h2>
+    <p class="body">If the design doesn't pass your grid operator's technical review on the first submission, we redesign it at zero additional cost. No questions asked.</p>
+    <p class="italic">We stand behind the work. If it doesn't work, neither do we — until it does.</p>
+  </div>
+</section>
+
+<!-- =========================================================
+     SECTION: OBJECTIONS
+     ========================================================= -->
+<section class="objections reveal">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Three Bonuses</span>
+      <h2>We Handle the Objections Before You Raise Them</h2>
+    </div>
+    <div class="obj-list">
+      <div class="obj-card">
+        <div class="obj-num">01</div>
+        <div class="obj-body">
+          <h3>Revision-Free Handoff</h3>
+          <p class="obj-q">Objection: "Outsourced work always needs corrections."</p>
+          <p class="obj-a">Every design ships with a full checklist: component sizing, string logic, shading analysis, and DACH/BENELUX compliance notes. Your installer picks it up and runs.</p>
+        </div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-num">02</div>
+        <div class="obj-body">
+          <h3>No Minimum Commitment</h3>
+          <p class="obj-q">Objection: "We don't want to be locked in before we know the quality."</p>
+          <p class="obj-a">Your first project is a test. Pay per design. No retainer, no monthly fee, no volume obligation. If your first design doesn't pass Netzbetreiber review on the first submission, you pay nothing and keep the files.</p>
+        </div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-num">03</div>
+        <div class="obj-body">
+          <h3>Compliant with DE / AT / CH / BENELUX Standards</h3>
+          <p class="obj-q">Objection: "Can a Kosovo firm deliver compliant designs for our market?"</p>
+          <p class="obj-a">Designs are produced to DIN VDE / EN requirements and reviewed against your specific network operator's grid code. We deliver across Germany, Austria, Switzerland, Belgium, the Netherlands and Luxembourg — residential and small commercial. Share your Netzbetreiber or grid operator when you submit specs and we apply their exact TAB requirements.</p>
+        </div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-num">04</div>
+        <div class="obj-body">
+          <h3>Submission-Ready File Formats</h3>
+          <p class="obj-q">Objection: "What formats do you deliver, and will they work with our submission workflow?"</p>
+          <p class="obj-a">Deliverables are provided as PDF reports, DXF/DWG layout files, and Excel-based BOQ and yield simulations — formatted to match Netzbetreiber submission requirements across DE, AT, CH, and BENELUX network operators.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SECTION: FOUNDER
+     ========================================================= -->
+<section class="founder reveal">
+  <div class="container">
+    <div class="founder-inner">
+      <img class="founder-photo" src="GEMBI UKA.PNG" alt="Gembi Uka — founder of VOLTUKA" />
+      <div class="founder-content">
+        <span class="eyebrow">The Founder</span>
+        <h2>Who Is Behind VOLTUKA?</h2>
+        <p>I am Gembi Uka, founder and managing director of VOLTUKA. I am an electrical engineer specializing in power systems, with applied expertise in DACH and BENELUX standards — DIN VDE / EN compliance, Netzbetreiber technical connection conditions (TAB), and grid-code review across DE, AT, CH, BE, NL and LU network operators.</p>
+        <p>Every PV design we have delivered has passed first-time grid operator review across DE residential and small commercial projects. The discipline is the same on every brief: produce a complete, code-compliant deliverable that an installer can submit without re-work.</p>
+        <p>VOLTUKA is built on one principle: European solar installers deserve engineering support that is fast, compliant, and priced for the real world — not at consultant rates.</p>
+        <div class="founder-sig">
+          Gembi Uka
+          <span>Founder &amp; Managing Director · VOLTUKA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SECTION: CAPACITY / URGENCY
+     ========================================================= -->
+<section class="capacity reveal">
+  <div class="container">
+    <div class="capacity-box">
+      <div class="capacity-eyebrow">Partnership Capacity · Q2 2026</div>
+      <h3>We cap onboarding to 3 new partners per quarter.</h3>
+      <p>This is not artificial scarcity — it is how we protect the 48-hour turnaround guarantee for every active partner. Taking on unlimited clients would break the promise. We prefer not to do that.</p>
+      <div class="capacity-quarter">Q2 2026 — 1 slot remaining · Q3 queue opens July 1</div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SECTION: FAQ
+     ========================================================= -->
+<section class="objections reveal" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">FAQ</span>
+      <h2>Questions We Get Before Every First Project</h2>
+    </div>
+    <div class="obj-list">
+      <div class="obj-card">
+        <div class="obj-num">01</div>
+        <div class="obj-body">
+          <h3>Software &amp; Tools</h3>
+          <p class="obj-q">Q: "What design software do you use?"</p>
+          <p class="obj-a">We work in PVSol and Helioscope for yield simulation and layout, with AutoCAD for technical drawings. All outputs are exported to formats compatible with your existing workflow.</p>
+        </div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-num">02</div>
+        <div class="obj-body">
+          <h3>Revision Policy</h3>
+          <p class="obj-q">Q: "What if we need a change after delivery?"</p>
+          <p class="obj-a">One round of revisions is included in every project at no extra cost, provided the scope hasn't changed. Redesigns required by grid operator feedback are always free under our compliance guarantee.</p>
+        </div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-num">03</div>
+        <div class="obj-body">
+          <h3>Local Grid Operator Specifics</h3>
+          <p class="obj-q">Q: "Can you handle our specific Netzbetreiber's requirements?"</p>
+          <p class="obj-a">Yes. Share your grid operator's name when you submit specs and we apply their specific technical connection conditions (TAB). We have worked with requirements across multiple German and Dutch network operators.</p>
+        </div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-num">04</div>
+        <div class="obj-body">
+          <h3>Payment &amp; Invoicing</h3>
+          <p class="obj-q">Q: "How does payment work?"</p>
+          <p class="obj-a">We invoice in EUR upon delivery. Payment is due within 14 days. We accept bank transfer (SEPA). No upfront payment is required for your first project.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SECTION: QUOTE FORM
+     ========================================================= -->
+<section class="quote" id="quote-section">
+  <div class="container">
+    <div class="quote-inner">
+      <div class="quote-head">
+        <span class="eyebrow">Get Started</span>
+        <h2>Get a Free Quote</h2>
+        <p>Tell us about your project. We'll send your quote within 24 hours with a fixed price and timeline — no obligation.</p>
+      </div>
+      <div class="form-card">
+        <form id="quoteForm" action="https://formspree.io/f/mpqbwwez" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fullName">Full Name <span class="req">*</span></label>
+              <input type="text" id="fullName" name="fullName" required autocomplete="name" />
+              <span class="err-msg" data-for="fullName">Please enter your full name.</span>
+            </div>
+            <div class="form-group">
+              <label for="company">Company Name <span class="req">*</span></label>
+              <input type="text" id="company" name="company" required autocomplete="organization" />
+              <span class="err-msg" data-for="company">Please enter your company name.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address <span class="req">*</span></label>
+            <input type="email" id="email" name="email" required autocomplete="email" />
+            <span class="err-msg" data-for="email">Please enter a valid email address.</span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="country">Country <span class="req">*</span></label>
+              <select id="country" name="country" required>
+                <option value="">Select country</option>
+                <option value="Germany">Germany</option>
+                <option value="Austria">Austria</option>
+                <option value="Switzerland">Switzerland</option>
+                <option value="Belgium">Belgium</option>
+                <option value="Netherlands">Netherlands</option>
+                <option value="Luxembourg">Luxembourg</option>
+                <option value="Other">Other</option>
+              </select>
+              <span class="err-msg" data-for="country">Please select your country.</span>
+            </div>
+            <div class="form-group">
+              <label for="systemSize">System Size <span class="req">*</span></label>
+              <select id="systemSize" name="systemSize" required>
+                <option value="">Select system size</option>
+                <option value="Residential ≤30 kWp">Residential ≤30 kWp</option>
+                <option value="Small Commercial 30–100 kWp">Small Commercial 30–100 kWp</option>
+                <option value="Medium C&I 100–300 kWp">Medium C&amp;I 100–300 kWp</option>
+                <option value="Large 300 kWp+">Large 300 kWp+</option>
+                <option value="Not Sure Yet">Not Sure Yet</option>
+              </select>
+              <span class="err-msg" data-for="systemSize">Please select a system size.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Project Description</label>
+            <textarea id="description" name="description" placeholder="Briefly describe your project — roof type, location, any grid operator details you already have."></textarea>
+          </div>
+
+          <button type="submit" class="btn form-submit">Request Free Quote &rarr;</button>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          <div class="check-big">&#10003;</div>
+          <h3>Thank you — we'll send your quote within 24 hours.</h3>
+          <p>Check your inbox shortly. If you don't hear from us, email gembi@voltuka.com directly.</p>
+        </div>
+
+        <p class="form-fallback">Prefer email? Reach us directly at <a href="mailto:gembi@voltuka.com">gembi@voltuka.com</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SECTION: FOOTER
+     ========================================================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">
+          <img src="LLOGO.png" alt="VOLTUKA logo" />
+        </div>
+        <p class="footer-tagline">Send us: roof plan, system size, location &amp; grid operator. We handle the rest. Design delivered within 48 hours.</p>
+      </div>
+      <div class="footer-contact">
+        <a href="https://wa.me/38349899294" target="_blank" rel="noopener">WhatsApp: +383 49 899 294</a>
+        <a href="tel:+38349899294">+383 49 899 294</a>
+        <a href="https://www.linkedin.com/in/gembi-uka-a62772163/" target="_blank" rel="noopener">LinkedIn — Gembi Uka</a>
+        <a href="mailto:gembi@voltuka.com">gembi@voltuka.com</a>
+        <a href="http://voltuka.com" target="_blank" rel="noopener">voltuka.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="legal">© 2026 VOLTUKA. All rights reserved.</span>
+      <span>Electrical Engineering &amp; Energy Solutions</span>
+    </div>
+  </div>
+</footer>
+
+<!-- =========================================================
+     MOBILE STICKY CTA BAR
+     ========================================================= -->
+<div class="mobile-sticky-cta" id="mobileCTA">
+  <a href="#quote-section" class="btn">Get a Free Quote &rarr;</a>
+</div>
+
+<script>
+/* =========================================================
+   NAVBAR — solid background on scroll
+   ========================================================= */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 30) navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
+}, { passive: true });
+
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+const burger = document.getElementById('navBurger');
+const mobileMenu = document.getElementById('mobileMenu');
+const overlay = document.getElementById('mobileOverlay');
+function closeMenu(){
+  burger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  overlay.classList.remove('show');
+  burger.setAttribute('aria-expanded','false');
+}
+burger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  burger.classList.toggle('open');
+  overlay.classList.toggle('show');
+  burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+overlay.addEventListener('click', closeMenu);
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+/* =========================================================
+   MOBILE STICKY CTA — hide when quote section is in view
+   ========================================================= */
+const mobileCTA = document.getElementById('mobileCTA');
+const quoteSection = document.getElementById('quote-section');
+if ('IntersectionObserver' in window) {
+  const ctaObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) mobileCTA.classList.add('hidden');
+      else mobileCTA.classList.remove('hidden');
+    });
+  }, { threshold: 0.15 });
+  ctaObs.observe(quoteSection);
+}
+
+/* =========================================================
+   FADE-IN ON SCROLL
+   ========================================================= */
+const reveals = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => revealObs.observe(el));
+} else {
+  reveals.forEach(el => el.classList.add('visible'));
+}
+
+/* =========================================================
+   QUOTE FORM — client-side validation + success state
+   ========================================================= */
+const form = document.getElementById('quoteForm');
+const successPanel = document.getElementById('formSuccess');
+
+function validateField(field) {
+  const errEl = form.querySelector('.err-msg[data-for="' + field.id + '"]');
+  let valid = true;
+
+  if (field.hasAttribute('required') && !field.value.trim()) {
+    valid = false;
+  } else if (field.type === 'email' && field.value) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!re.test(field.value)) valid = false;
+  }
+
+  if (valid) {
+    field.classList.remove('error');
+    if (errEl) errEl.classList.remove('show');
+  } else {
+    field.classList.add('error');
+    if (errEl) errEl.classList.add('show');
+  }
+  return valid;
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const fields = form.querySelectorAll('input, select, textarea');
+  let allValid = true;
+  fields.forEach(f => {
+    if (f.hasAttribute('required') || f.type === 'email') {
+      if (!validateField(f)) allValid = false;
+    }
+  });
+
+  if (!allValid) {
+    const firstError = form.querySelector('.error');
+    if (firstError) firstError.focus();
+    return;
+  }
+
+  const submitBtn = form.querySelector('.form-submit');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+
+  try {
+    const data = new FormData(form);
+    const response = await fetch('https://formspree.io/f/mpqbwwez', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      form.style.display = 'none';
+      successPanel.classList.add('show');
+      successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Request Free Quote →';
+      alert('Something went wrong. Please email us directly at gembi@voltuka.com');
+    }
+  } catch (err) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Request Free Quote →';
+    alert('Something went wrong. Please email us directly at gembi@voltuka.com');
+  }
+});
+
+// Live-clear errors as user corrects them
+form.querySelectorAll('input, select, textarea').forEach(f => {
+  f.addEventListener('input', () => {
+    if (f.classList.contains('error')) validateField(f);
+  });
+  f.addEventListener('change', () => {
+    if (f.classList.contains('error')) validateField(f);
+  });
+});
+</script>
+</body>
+</html>
